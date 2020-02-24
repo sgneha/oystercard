@@ -12,6 +12,16 @@ describe Oystercard do
     expect(subject.in_journey?).to eq false
   end
 
+  it 'checks if card is in journey after touch in' do
+    subject.touch_in
+    expect(subject.in_journey?).to eq true
+  end
+  it 'checks if card is not in journey after touch out' do
+    allow(subject).to receive(:touch_in) {true}
+    allow(subject).to receive(:touch_out) {true}
+    expect(subject.in_journey?).to eq false
+  end
+
   describe '#top_up' do
     it "top up's the balance with the value" do
       expect(subject.top_up(5)).to eq 5

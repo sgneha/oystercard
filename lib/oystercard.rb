@@ -22,9 +22,13 @@ class Oystercard
     @state
   end
 
-  def touch_in; end
+  def touch_in
+    @state = true
+end
 
-  def touch_out; end
+  def touch_out
+    @state = false
+ end
 
   private
 
