@@ -22,6 +22,10 @@ class Oystercard
     @state
   end
 
+  def touch_in; end
+
+  def touch_out; end
+
   private
 
   def limit?

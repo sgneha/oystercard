@@ -2,6 +2,8 @@
 
 require 'oystercard'
 describe Oystercard do
+  it { is_expected.to respond_to(:touch_in) }
+  it { is_expected.to respond_to(:touch_out) }
   it 'check if balance by default is 0' do
     expect(subject.balance).to eq 0
   end
@@ -9,6 +11,7 @@ describe Oystercard do
   it 'checks the status of the card' do
     expect(subject.in_journey?).to eq false
   end
+
   describe '#top_up' do
     it "top up's the balance with the value" do
       expect(subject.top_up(5)).to eq 5
