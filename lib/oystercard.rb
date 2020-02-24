@@ -3,6 +3,7 @@
 class Oystercard
   attr_reader :balance
   attr_accessor :state
+  LIMIT = 90
   def initialize(balance = 0, state = false)
     @balance = balance
     @state = state
@@ -23,16 +24,17 @@ class Oystercard
   end
 
   def touch_in
+    raise 'Not Enough Balance' if @balance < 1
     @state = true
-end
+  end
 
   def touch_out
     @state = false
- end
+  end
 
   private
 
   def limit?
-    @balance >= 90
+    @balance >= LIMIT
   end
 end

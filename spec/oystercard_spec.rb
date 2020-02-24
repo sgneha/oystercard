@@ -13,13 +13,18 @@ describe Oystercard do
   end
 
   it 'checks if card is in journey after touch in' do
+    subject.top_up(5)
     subject.touch_in
     expect(subject.in_journey?).to eq true
   end
   it 'checks if card is not in journey after touch out' do
-    allow(subject).to receive(:touch_in) {true}
-    allow(subject).to receive(:touch_out) {true}
+    allow(subject).to receive(:touch_in) { true }
+    allow(subject).to receive(:touch_out) { true }
     expect(subject.in_journey?).to eq false
+  end
+  it 'raise error when touch in if balance is less than 1£' do
+    error = 'Not Enough Balance'
+    expect { subject.touch_in }.to raise_error error
   end
 
   describe '#top_up' do
