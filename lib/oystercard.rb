@@ -8,11 +8,16 @@ class Oystercard
 
   def top_up(value)
     @balance += value
-    fail 'You exceeded the limit of 90£' if limit?
+    raise 'You exceeded the limit of 90£' if limit?
     @balance
   end
 
+  def deduct(value)
+    @balance -= value
+  end
+
   private
+
   def limit?
     @balance >= 90
   end

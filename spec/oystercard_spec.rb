@@ -11,8 +11,14 @@ describe Oystercard do
     end
 
     it 'raises an error when balance is more than 90' do
-        error = 'You exceeded the limit of 90£'
-        expect {subject.top_up(95)}.to raise_error error
-    end 
+      error = 'You exceeded the limit of 90£'
+      expect { subject.top_up(95) }.to raise_error error
+    end
+  end
+  describe '#deduct' do
+    it 'deducts the value from the balance' do
+      subject.top_up(10)
+      expect(subject.deduct(4)).to eq 6
+    end
   end
 end
