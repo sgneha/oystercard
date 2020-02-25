@@ -4,6 +4,7 @@ class Oystercard
   attr_reader :balance
   attr_accessor :state
   LIMIT = 90
+  MIN_BAL = 1
   def initialize(balance = 0, state = false)
     @balance = balance
     @state = state
@@ -11,7 +12,7 @@ class Oystercard
 
   def top_up(value)
     @balance += value
-    raise 'You exceeded the limit of 90£' if limit?
+    raise "You exceeded the limit of #{LIMIT}£" if limit?
     @balance
   end
 
@@ -24,7 +25,7 @@ class Oystercard
   end
 
   def touch_in
-    raise 'Not Enough Balance' if @balance < 1
+    raise 'Not Enough Balance' if @balance < MIN_BAL
     @state = true
   end
 
